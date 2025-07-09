@@ -3,11 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-todo-landing',
   imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: './todo-landing.html',
+  styleUrl: './todo-landing.css'
 })
-export class App {
-  protected title = 'todo-application';
+export class TodoLanding {
+
 }
