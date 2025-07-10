@@ -14,10 +14,12 @@ export class TodoForSaveModel{
         title:string;
         description:string;
         date:Date;
-        constructor(id:number=0,title:string='',description:string='',date:Date=new Date()){
+        documentId:string;
+        constructor(id:number=0,title:string='',description:string='',date:Date=new Date(), doucumentId:string=''){
             this.id=id ;
             this.title=title;
             this.description=description;
             this.date=date;
+            this.documentId=doucumentId;
         }
     }

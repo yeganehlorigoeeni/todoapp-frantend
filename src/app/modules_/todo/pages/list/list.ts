@@ -3,6 +3,7 @@ import { TodoService } from '../../../../services_/todo';
 import { CommonModule } from '@angular/common';
 import { TodoForListModel } from '../../../../models_/todo.model';
 import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -24,6 +25,13 @@ export class List implements OnInit {
     this.todoService.getTodos().subscribe((response) => {
       this.todos = response.data; 
     });
+  }
+  
+
+  deleteTodo(id:string){
+    this.todoService.deleteTodo(id).subscribe(()=>{
+      this.todos= this.todos.filter(n => n.documentId !==id)
+    })
   }
 }
 

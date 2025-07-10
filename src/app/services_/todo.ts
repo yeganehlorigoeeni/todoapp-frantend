@@ -22,7 +22,14 @@ export class TodoService {
     }})
   }
 
-    getTote(id: number): Observable<{data:TodoForListModel}> {
-    return this.http.get<{data:TodoForListModel}>(`${this.apiUrl}/${id}`);
+  getTodoBydocumentId(documentId:string):Observable<{data:any[]}>{
+    return this.http.get<{data:any[]}>(`http://localhost:1337/api/todos?filter[documentId][$eq]=${documentId}`)
   }
+
+deleteTodo(id:string):Observable<any>{
+  console.log(id);
+  return this.http.delete(`http://localhost:1337/api/todos/${id}`)
+}
+
+  
 }
