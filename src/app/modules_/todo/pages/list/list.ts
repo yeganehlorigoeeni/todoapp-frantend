@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../../../../services_/todo';
+import { CommonModule } from '@angular/common';
+import { TodoForListModel } from '../../../../models_/todo.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list',
-  imports: [],
+  imports: [CommonModule,RouterLink],
   templateUrl: './list.html',
   styleUrl: './list.css'
 })
-export class List {
 
+export class List implements OnInit {
+  todos: TodoForListModel[] = [];
+
+  constructor(private todoService: TodoService) {}
+
+  ngOnInit(): void {
+    this.loadTodos(); 
+  }
+
+  loadTodos(): void {
+    this.todoService.getTodos().subscribe((response) => {
+      this.todos = response.data; 
+    });
+  }
 }
+
+
+
