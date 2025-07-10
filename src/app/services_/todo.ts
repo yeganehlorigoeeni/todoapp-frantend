@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map,Observable } from 'rxjs';
 import { TodoForListModel, TodoForSaveModel } from '../models_/todo.model';
 
 @Injectable({
@@ -29,6 +29,16 @@ export class TodoService {
 deleteTodo(id:string):Observable<any>{
   console.log(id);
   return this.http.delete(`http://localhost:1337/api/todos/${id}`)
+}
+
+
+editTodo(todoForUpdate:TodoForListModel):Observable<TodoForListModel>{
+  const todo ={ 
+    title:todoForUpdate.title,
+    description:todoForUpdate.description
+  }
+  return this.http.put<{data:TodoForListModel}>
+  (`http://localhost:1337/api/todos/${todoForUpdate.documentId}`,{data:todo}).pipe(map(res => res.data));
 }
 
   
